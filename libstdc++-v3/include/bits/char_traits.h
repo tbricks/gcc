@@ -246,7 +246,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __constant_char_array_p(const _CharT* __a, size_t __n)
     {
       size_t __i = 0;
-      while (__builtin_constant_p(__a[__i]) && __i < __n)
+      while (__i < __n && __builtin_constant_p(__a[__i]))
 	__i++;
       return __i == __n;
     }
@@ -299,14 +299,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static _GLIBCXX17_CONSTEXPR int
       compare(const char_type* __s1, const char_type* __s2, size_t __n)
       {
+	if (__n == 0)
+	  return 0;
 #if __cplusplus > 201402
 	if (__builtin_constant_p(__n)
 	    && __constant_char_array_p(__s1, __n)
 	    && __constant_char_array_p(__s2, __n))
 	  return __gnu_cxx::char_traits<char_type>::compare(__s1, __s2, __n);
 #endif
-	if (__n == 0)
-	  return 0;
 	return __builtin_memcmp(__s1, __s2, __n);
       }
 
@@ -323,14 +323,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static _GLIBCXX17_CONSTEXPR const char_type*
       find(const char_type* __s, size_t __n, const char_type& __a)
       {
+	if (__n == 0)
+	  return 0;
 #if __cplusplus > 201402
 	if (__builtin_constant_p(__n)
 	    && __builtin_constant_p(__a)
 	    && __constant_char_array_p(__s, __n))
 	  return __gnu_cxx::char_traits<char_type>::find(__s, __n, __a);
 #endif
-	if (__n == 0)
-	  return 0;
 	return static_cast<const char_type*>(__builtin_memchr(__s, __a, __n));
       }
 
@@ -408,6 +408,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static _GLIBCXX17_CONSTEXPR int
       compare(const char_type* __s1, const char_type* __s2, size_t __n)
       {
+	if (__n == 0)
+	  return 0;
 #if __cplusplus > 201402
 	if (__builtin_constant_p(__n)
 	    && __constant_char_array_p(__s1, __n)
@@ -434,6 +436,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       static _GLIBCXX17_CONSTEXPR const char_type*
       find(const char_type* __s, size_t __n, const char_type& __a)
       {
+	if (__n == 0)
+	  return 0;
 #if __cplusplus > 201402
 	if (__builtin_constant_p(__n)
 	    && __builtin_constant_p(__a)
