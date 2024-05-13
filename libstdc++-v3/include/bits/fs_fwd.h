@@ -46,6 +46,10 @@ namespace filesystem
 inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
 #endif
 
+_GLIBCXX_BEGIN_NAMESPACE_CXX11
+inline namespace __tbgcc8 __attribute__((__abi_tag__ ("tbgcc8"))) { }
+_GLIBCXX_END_NAMESPACE_CXX11
+
   /**
    * @defgroup filesystem Filesystem
    *
@@ -57,11 +61,13 @@ inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
 
   class file_status;
 _GLIBCXX_BEGIN_NAMESPACE_CXX11
+namespace __tbgcc8 {
   class path;
   class filesystem_error;
   class directory_entry;
   class directory_iterator;
   class recursive_directory_iterator;
+} // namespace __tbgcc8
 _GLIBCXX_END_NAMESPACE_CXX11
 
   struct space_info

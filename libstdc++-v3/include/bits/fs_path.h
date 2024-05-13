@@ -56,6 +56,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 namespace filesystem
 {
 _GLIBCXX_BEGIN_NAMESPACE_CXX11
+namespace __tbgcc8 {
 
   /**
    * @ingroup filesystem
@@ -1146,6 +1147,7 @@ _GLIBCXX_BEGIN_NAMESPACE_CXX11
   }
 
   // @} group filesystem
+} // namespace __tbgcc8
 _GLIBCXX_END_NAMESPACE_CXX11
 } // namespace filesystem
 
